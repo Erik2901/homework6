@@ -13,24 +13,26 @@ void ex1() {
     int b = 1;
     cout << "Enter array cout: ";
     cin >> n;
-    if (n>0)
+    while (n < 1) {
+        cout << "Error. Enter a number from 0:";
+        cin >> n;
+    }
+    ptra = new(nothrow) int[n];
+    if (ptra != nullptr)
     {
-        ptra = new(nothrow) int[n];
-        if (ptra != nullptr)
+        for (size_t i = 0; i < n; i++)
         {
-            for (size_t i = 0; i < n; i++)
-            {
-                ptra[i] = b;
-                b = b * 2;
-                cout << ptra[i] << " ";
-            }
-            delete[] ptra;
-            ptra = nullptr;
+            ptra[i] = b;
+            b = b * 2;
+            cout << ptra[i] << " ";
         }
-        else
-        {
-            cout << "Error! Can not allocate memory!";
-        }
+        delete[] ptra;
+        ptra = nullptr;
+        cout << endl;
+    }
+    else
+    {
+        cout << "Error! Can not allocate memory!";
     }
 }
 
@@ -40,17 +42,30 @@ void ex2() {
     const size_t n = 6;
 
     ptra = new(nothrow) int* [m];
-    for (size_t i = 0; i < m; i++)
+    if (ptra != nullptr)
     {
-        ptra[i] = new(nothrow) int[n];
+        for (size_t i = 0; i < m; i++)
+        {
+            ptra[i] = new(nothrow) int[n];
+        }
     }
-
+    else
+    {
+        cout << "Error! Can not allocate memory!";
+    }
     for (size_t i = 0; i < m; i++)
     {
         for (size_t j = 0; j < n; j++)
         {
-            ptra[i][j] = rand();
-            cout << ptra[i][j] << " ";
+            if (ptra[i] != nullptr)
+            {
+                ptra[i][j] = rand();
+                cout << ptra[i][j] << " ";
+            }
+            else
+            {
+                cout << "Error! Can not allocate memory!";
+            }
         }
         cout << endl;
     }
