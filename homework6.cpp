@@ -38,8 +38,8 @@ void ex1() {
 
 void ex2() {
     int** ptra;
-    const size_t m = 6;
-    const size_t n = 6;
+    const size_t m = 4;
+    const size_t n = 4;
 
     ptra = new(nothrow) int* [m];
     if (ptra != nullptr)
